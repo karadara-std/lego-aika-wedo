@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO WeDo - Ваш первый шаг в мир технологий!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f7fc;
+            color: #333;
+        }
+        header {
+            background-color: #5a9bd6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #5a9bd6;
+        }
+        .packages {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .package {
+            border: 2px solid #5a9bd6;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            flex: 1;
+            transition: transform 0.3s;
+        }
+        .package:hover {
+            transform: scale(1.05);
+        }
+        .package button {
+            background-color: #5a9bd6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .package button:hover {
+            background-color: #4a8cbe;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #5a9bd6;
+            color: white;
+        }
+        footer a {
+            color: #ffdb4d;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать в мир LEGO WeDo!</h1>
+        <p>Создавайте, играйте и учитесь вместе с нами!</p>
+    </header>
+
+    <section>
+        <h2>Наборы для каждого ребёнка</h2>
+        <div class="packages">
+            <div class="package">
+                <h3>Простой</h3>
+                <p>Инструкции и сборки для начинающих.</p>
+                <button onclick="redirectToWhatsApp('Простой')">Купить</button>
+            </div>
+            <div class="package">
+                <h3>Базовый</h3>
+                <p>Дополнительные инструкции и доступ к базе видеоуроков.</p>
+                <button onclick="redirectToWhatsApp('Базовый')">Купить</button>
+            </div>
+            <div class="package">
+                <h3>Про</h3>
+                <p>Максимальный набор материалов для творцов.</p>
+                <button onclick="redirectToWhatsApp('Про')">Купить</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Войти в аккаунт</h2>
+        <form onsubmit="return loginUser()">
+            <label for="username">Имя пользователя:</label><br>
+            <input type="text" id="username" required><br><br>
+            <label for="password">Пароль:</label><br>
+            <input type="password" id="password" required><br><br>
+            <button type="submit">Войти</button>
+        </form>
+        <p id="loginError" style="color: red; display: none;">Неправильный логин или пароль!</p>
+    </section>
+
+    <section id="instructions" style="display: none;">
+        <h2>Ваши инструкции и видеоуроки</h2>
+        <ul>
+            <li><a href="#">Урок 1: Основы сборки</a></li>
+            <li><a href="#">Урок 2: Создание первых моделей</a></li>
+            <li><a href="#">Урок 3: Программирование</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Контакты: <a href="mailto:seilhanaidar@gmail.com">seilhanaidar@gmail.com</a> | Телефон: +77761909000</p>
+    </footer>
+
+    <script>
+        const users = {
+            'exampleUser': 'examplePassword',
+        };
+
+        function loginUser() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (users[username] === password) {
+                document.getElementById('loginError').style.display = 'none';
+                document.getElementById('instructions').style.display = 'block';
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+
+            return false;
+        }
+
+        function redirectToWhatsApp(packageName) {
+            const message = `Здравствуйте! Хочу приобрести пакет ${packageName} LEGO WeDo.`;
+            const phone = '+77712519626';
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
